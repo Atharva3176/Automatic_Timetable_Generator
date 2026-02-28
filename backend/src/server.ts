@@ -8,21 +8,14 @@ dotenv.config();
 
 const app = express();
 
-const corsOrigin = process.env.CORS_ORIGIN || "http://localhost:3000";
-const allowedOrigins = corsOrigin.split(",").map((o) => o.trim()).filter(Boolean);
-if (allowedOrigins.length === 0) allowedOrigins.push("http://localhost:3000");
+const corsOrigin =
+  process.env.CORS_ORIGIN || "https://automatic-timetable-generator-drab.vercel.app";
 
 app.use(
   cors({
-    origin: (requestOrigin, callback) => {
-      if (!requestOrigin) return callback(null, true);
-      if (allowedOrigins.includes(requestOrigin)) return callback(null, true);
-      if (requestOrigin.endsWith(".vercel.app")) return callback(null, true);
-      callback(null, false);
-    },
+    origin: corsOrigin,
     methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
-    optionsSuccessStatus: 200
+    allowedHeaders: ["Content-Type"]
   })
 );
 app.use(express.json());
