@@ -8,7 +8,8 @@ dotenv.config();
 
 const app = express();
 
-const corsOrigin = "https://automatic-timetable-generator-drab.vercel.app";
+const corsOrigin =
+  process.env.CORS_ORIGIN || "https://automatic-timetable-generator-drab.vercel.app";
 
 app.use(
   cors({
