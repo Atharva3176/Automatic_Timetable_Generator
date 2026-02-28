@@ -14,7 +14,15 @@ if (allowedOrigins.length === 0) allowedOrigins.push("http://localhost:3000");
 
 app.use(
   cors({
-    origin: allowedOrigins.length === 1 ? allowedOrigins[0] : allowedOrigins
+    origin: (requestOrigin, callback) => {
+      if (!requestOrigin) return callback(null, true);
+      if (allowedOrigins.includes(requestOrigin)) return callback(null, true);
+      if (requestOrigin.endsWith(".vercel.app")) return callback(null, true);
+      callback(null, false);
+    },
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+    optionsSuccessStatus: 200
   })
 );
 app.use(express.json());
