@@ -61,7 +61,7 @@ function buildTableBody(tt: Timetable): (string | number | { content: string; co
 
 export function exportTimetableToPdf(tt: Timetable, filename?: string): void {
   const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
-  const pageWidth = doc.getPageWidth();
+  const pageWidth = 297;
   const margin = 10;
 
   doc.setFontSize(14);
