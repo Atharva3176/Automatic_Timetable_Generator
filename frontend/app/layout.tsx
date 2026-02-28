@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-gradient-to-b from-sky-50 via-white to-indigo-50/60 text-foreground antialiased">
-        <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-8">
+        <div className="mx-auto flex min-h-screen w-full max-w-[1920px] flex-col px-6 py-8">
           <header className="mb-6 flex items-center justify-between gap-4 animate-in fade-in-50 slide-in-from-top-2">
             <div>
               <h1 className="text-3xl font-semibold tracking-tight">

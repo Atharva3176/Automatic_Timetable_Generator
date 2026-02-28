@@ -8,9 +8,13 @@ dotenv.config();
 
 const app = express();
 
+const corsOrigin = process.env.CORS_ORIGIN || "http://localhost:3000";
+const allowedOrigins = corsOrigin.split(",").map((o) => o.trim()).filter(Boolean);
+if (allowedOrigins.length === 0) allowedOrigins.push("http://localhost:3000");
+
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || "http://localhost:3000"
+    origin: allowedOrigins.length === 1 ? allowedOrigins[0] : allowedOrigins
   })
 );
 app.use(express.json());
